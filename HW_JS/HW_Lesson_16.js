@@ -90,7 +90,7 @@ let codeWord3 = "огурцы";
 let codeWord4 = "липкие";
 let codeWord5 = "?!";
 
-let secretWord =
+let cipher =
   codeWord1[1] + codeWord2[1] + codeWord3[1] + codeWord4[1] + codeWord5[1];
 
-console.log(`Task 2+ result. Secret word is '${secretWord}'`);
+console.log(`Task 2+ result. Secret word is '${cipher}'`);
