@@ -2,7 +2,7 @@
 let x = 20;
 let y = 58;
 let z = 42;
-let sum = x + y + z;
+const sum = x + y + z;
 
 console.log(`Task 1 result. ${sum}`);
 
@@ -14,7 +14,8 @@ const daysInYear = 365;
 
 const dateBirth = new Date("1990-08-01");
 const dateNow = new Date();
-const myAgeInSeconds = (dateNow - dateBirth) / 1000;
+const myAgeInSeconds = 35 * 365 * 24 * 60 * 60;
+// const myAgeInSeconds2 = (dateNow - dateBirth) / 1000;
 // const myAgeInYears = (dateNow - dateBirth) / (1000 * 60 * 60 * 24 * 365);
 
 // console.log(`Task 2 result: ${dateBirth}`);
@@ -39,7 +40,7 @@ console.log(
 let a = 1;
 let b = 2;
 let c = "белых медведей";
-let d = "" + a + b + " " + c;
+const d = "" + a + b + " " + c;
 
 console.log(`Task 4 result. ${d}`);
 
