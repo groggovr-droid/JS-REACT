@@ -46,34 +46,55 @@ let apple = false;
 let orange = true;
 let shouldGoToWork;
 
-if (
-  key === true &&
-  documents === true &&
-  pen === true &&
-  (apple === true || orange === true)
-) {
-  shouldGoToWork = true;
-} else {
-  shouldGoToWork = false;
-}
+// if (
+//   key === true &&
+//   documents === true &&
+//   pen === true &&
+//   (apple === true || orange === true)
+// ) {
+//   shouldGoToWork = true;
+// } else {
+//   shouldGoToWork = false;
+// }
+shouldGoToWork = key && documents && pen && (apple || orange);
 
 console.log(`shouldGoToWork is ${shouldGoToWork}`);
 
 //task 5
 console.log(`   TASK 5.`);
 
-const userNumber = Number(prompt("Введите число"));
+// const userNumber = Number(prompt("Введите число"));
+const userNumber = prompt("Введите число");
 console.log(`Введено число ${userNumber}`);
 
-if (userNumber % 3 === 0 && userNumber % 5 === 0) {
-  console.log(`FizBuz`);
-} else if (userNumber % 3 === 0) {
-  console.log(`Buz`);
-} else if (userNumber % 5 === 0) {
-  console.log(`Fiz`);
+if (userNumber === null) {
+  alert("Пользователь отменил ввод");
 } else {
-  console.log(`Ошибка`);
+  const num = +userNumber;
+
+  if (Number.isNaN(num)) {
+    alert("Введено не число");
+    console.log(`Введено не число`);
+  } else if (userNumber % 3 === 0 && userNumber % 5 === 0) {
+    console.log(`FizBuz`);
+  } else if (userNumber % 3 === 0) {
+    console.log(`Buz`);
+  } else if (userNumber % 5 === 0) {
+    console.log(`Fiz`);
+  } else {
+    console.log(`Ошибка`);
+  }
 }
+
+// if (userNumber % 3 === 0 && userNumber % 5 === 0) {
+//   console.log(`FizBuz`);
+// } else if (userNumber % 3 === 0) {
+//   console.log(`Buz`);
+// } else if (userNumber % 5 === 0) {
+//   console.log(`Fiz`);
+// } else {
+//   console.log(`Ошибка`);
+// }
 
 //task 6
 console.log(`   TASK 6.`);
@@ -81,13 +102,30 @@ console.log(`   TASK 6.`);
 const userAge = prompt("Введите свой возраст");
 console.log(`Твой возраст: ${userAge}`);
 
-if (userAge > 18) {
-  console.log(`Попей пивка`);
-} else if (16 <= userAge && userAge <= 18) {
-  console.log(`Можешь выкурить сигаретку, только маме не говори`);
+if (userAge === null) {
+  alert("Пользователь отменил ввод");
 } else {
-  console.log(`Пей колу`);
+  const age = +userNumber;
+
+  if (Number.isNaN(age)) {
+    alert("Введено не число");
+    console.log(`Введено не число`);
+  } else if (userAge > 18) {
+    console.log(`Попей пивка`);
+  } else if (16 <= userAge && userAge <= 18) {
+    console.log(`Можешь выкурить сигаретку, только маме не говори`);
+  } else {
+    console.log(`Пей колу`);
+  }
 }
+
+// if (userAge > 18) {
+//   console.log(`Попей пивка`);
+// } else if (16 <= userAge && userAge <= 18) {
+//   console.log(`Можешь выкурить сигаретку, только маме не говори`);
+// } else {
+//   console.log(`Пей колу`);
+// }
 
 //task 7
 console.log(`   TASK 7.`);
@@ -151,7 +189,7 @@ let result =
   resultDiv;
 
 console.log(
-  `Результат: ((((${userNumber} - ${resultMinus}) + ${resultAdd}) * ${resultMulti}) / ${resultDiv}) = ${result}`,
+  `Результат: ((((${userValue} - ${resultMinus}) + ${resultAdd}) * ${resultMulti}) / ${resultDiv}) = ${result}`,
 );
 alert(
   `((((${userValue} - ${resultMinus}) + ${resultAdd}) * ${resultMulti}) / ${resultDiv}) = ${result}`,
