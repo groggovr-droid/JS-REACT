@@ -21,7 +21,7 @@ function calcOverprice(creditSum) {
   const month = year * 12;
   const monthPayOD = Math.round((creditSum / month) * 1000) / 1000;
   let creditSumRest = creditSum;
-  console.log(`Ежемесячный платёж по основному долгу: ${monthPayOD}`);
+  // console.log(`Ежемесячный платёж по основному долгу: ${monthPayOD}`);
   let monthPercSum = 0;
 
   for (let i = 1; i <= 60; i++) {
