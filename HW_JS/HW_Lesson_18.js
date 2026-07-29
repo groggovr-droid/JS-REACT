@@ -50,6 +50,11 @@ function trimString(userText, begin, end) {
   let inputCorrect;
   inputCorrect = userText !== "" && begin >= 0 && end >= 0 && end >= begin;
 
+  if (!inputCorrect) {
+    console.log(`Ошибка, данные введены некорректно!`);
+    return;
+  }
+
   let newUserText = "";
   for (let i = begin; i <= end; i++) {
     newUserText = newUserText + userText[i];
