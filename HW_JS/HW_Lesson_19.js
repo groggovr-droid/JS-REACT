@@ -88,7 +88,7 @@ for (let key in salaries) {
   totalSalary = totalSalary + salaries[key];
 }
 
-if (workerCount != 0) {
+if (workerCount !== 0) {
   averageSalary = totalSalary / workerCount;
 } else {
   console.log(`Количество работников равно ${workerCount}`);
