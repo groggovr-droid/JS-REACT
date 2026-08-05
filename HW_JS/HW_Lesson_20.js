@@ -83,20 +83,33 @@ console.log(binary.join(1));
 
 //task 1+
 console.log(`   TASK 1+.`);
-let word = "lool";
+let word = "losol";
+
+//мой вариант
+// function polyndrom(word) {
+//   const wordLen = word.length;
+//   console.log(`Слово: ${word}`);
+//   console.log(`Длина слова: ${wordLen} символа(-ов)`);
+
+//   const arr = word.split("");
+//   console.log(`Массив: ${arr}`);
+//   const arrRev = word.split("").reverse();
+//   console.log(`Обратный массив: ${arrRev}`);
+
+//   for (let i = 0; i < wordLen; i++) {
+//     if (arr[i] !== arrRev[i]) {
+//       console.log(`Слово ${word} не является полиндромом`);
+//       return;
+//     }
+//   }
+//   console.log(`Слово ${word} является полиндромом`);
+// }
 
 function polyndrom(word) {
-  const wordLen = word.length;
-  console.log(`Слово: ${word}`);
-  console.log(`Длина слова: ${wordLen} символа(-ов)`);
-
-  const arr = word.split("");
-  console.log(`Массив: ${arr}`);
-  const arrRev = word.split("").reverse();
-  console.log(`Обратный массив: ${arrRev}`);
-
-  for (let i = 0; i < wordLen; i++) {
-    if (arr[i] !== arrRev[i]) {
+  for (let i = 0; i < word.length; i++) {
+    console.log(word[i]);
+    console.log(word[word.length - 1 - i]);
+    if (word[i] !== word[word.length - 1 - i]) {
       console.log(`Слово ${word} не является полиндромом`);
       return;
     }
