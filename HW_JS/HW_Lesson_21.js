@@ -100,8 +100,9 @@ console.log(`   TASK 1+`);
 //task 2+
 console.log(`   TASK 2.1+`);
 
+let resultString = "";
+
 function delVowel(inputString) {
-  let resultString = "";
   // const arrVowel = ["A", "E", "I", "O", "U", "a", "e", "i", "o", "u"];
   const vowelString = "AEIOUaeiou";
 
@@ -118,8 +119,9 @@ delVowel("This website is for losers LOL!");
 
 console.log(`   TASK 2.2+`);
 
+const inputArr = inputString.split("");
+
 function delVowelArr(inputString) {
-  const inputArr = inputString.split("");
   const arrVowel = ["A", "E", "I", "O", "U", "a", "e", "i", "o", "u"];
 
   // console.log(inputArr);
@@ -133,6 +135,47 @@ delVowelArr("This website is for losers LOL!");
 
 //task 3+
 console.log(`   TASK 3+`);
+
+const inputString = "RqaEzty";
+// const inputArr = inputString.split("");
+
+console.log(inputArr);
+
+// accum('abcd') // -> 'A-Bb-Ccc-Dddd'
+// accum('RqaEzty') // -> 'R-Qq-Aaa-Eeee-Zzzzz-Tttttt-Yyyyyyy'
+// accum('cwAt') // -> 'C-Ww-Aaa-Tttt'
+
+// const numbers = [1, 2, 3];
+// const result = numbers.reduce((acc, number) => {
+//   console.log(acc, number);
+//   return acc + number;
+// }, 0);
+// console.log(result);
+
+//рабочий вариант
+// const inputArr = ["a", "b", "c"];
+// const resArr = inputArr
+//   .map((letter, index) => letter.toUpperCase() + letter.toLowerCase().repeat(index))
+//   .join("-");
+
+// console.log(resArr); // "A-Bb-Ccc"
+
+//мой вариант
+const resArr = inputArr.reduce((accum, letter, index) => {
+  let resStr = "";
+  for (let i = 0; i < index + 1; i++) {
+    // resStr = resStr + letter;
+    accum = accum + letter;
+  }
+  console.log(index);
+
+  if (index < inputArr.length - 1) {
+    accum = accum + "-";
+  }
+  return accum;
+}, "");
+
+console.log(resArr);
 
 //task 4+
 console.log(`   TASK 4.1+`);
