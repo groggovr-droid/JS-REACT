@@ -101,7 +101,6 @@ console.log(`   TASK 1+`);
 console.log(`   TASK 2.1+`);
 
 let resultString = "";
-
 function delVowel(inputString) {
   // const arrVowel = ["A", "E", "I", "O", "U", "a", "e", "i", "o", "u"];
   const vowelString = "AEIOUaeiou";
@@ -119,9 +118,8 @@ delVowel("This website is for losers LOL!");
 
 console.log(`   TASK 2.2+`);
 
-const inputArr = inputString.split("");
-
 function delVowelArr(inputString) {
+  const inputArr = inputString.split("");
   const arrVowel = ["A", "E", "I", "O", "U", "a", "e", "i", "o", "u"];
 
   // console.log(inputArr);
@@ -137,7 +135,7 @@ delVowelArr("This website is for losers LOL!");
 console.log(`   TASK 3+`);
 
 const inputString = "RqaEzty";
-// const inputArr = inputString.split("");
+const inputArr = inputString.split("");
 
 console.log(inputArr);
 
