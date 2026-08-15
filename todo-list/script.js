@@ -116,7 +116,7 @@ createElement(
 createElement(
   "input",
   "InputTodotext",
-  "InputTodotext",
+  "",
   {
     type: "text",
     margin: "0 5px",
