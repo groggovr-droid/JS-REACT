@@ -1,152 +1,108 @@
-// const fragment = document.createDocumentFragment();
+const fragment = document.createDocumentFragment();
 
-function createElement(tag, text = "", id = "", styles = {}, container = null) {
-  const element = document.createElement(tag);
+const createElement = (tag, options = {}) => {
+  const newElement = document.createElement(tag);
 
   //присваиваем value
-  if (text) {
-    element.textContent = text;
+  if (options.textContent) {
+    newElement.textContent = options.textContent;
   }
 
-  if (id) {
-    element.id = id; // Присваиваем ID элементу
+  //тип элемента
+  if (options.type) {
+    newElement.type = options.type;
   }
 
-  //присваиваем стили
-  for (const key in styles) {
-    element.style[key] = styles[key];
+  //класс элемента
+  if (options.className) {
+    newElement.className = options.className; // Присваиваем ID элементу
+  }
+
+  // ID элемента
+  if (options.id) {
+    newElement.id = options.id;
+  }
+
+  // placeholder элемента
+  if (options.placeholder) {
+    newElement.placeholder = options.placeholder;
+  }
+
+  // value элемента
+  if (options.value) {
+    newElement.value = options.value;
   }
 
   //добавляем к контейнеру
-  if (container) {
-    container.append(element);
+  if (options.container) {
+    options.container.append(newElement);
   }
 
-  return element;
-}
-
-//создаём div root
-createElement(
-  "div",
-  "",
-  "root",
-  {
-    width: "fit-content",
-    padding: "10px 20px",
-    border: "2px solid black",
-    borderRadius: "5px",
-    background: "lightgray",
-  },
-  document.querySelector("body"),
-);
+  fragment.append(newElement);
+  // fragment.
+};
 
 //создаём btn DeleteAll
-createElement(
-  "button",
-  "DeleteALL",
-  "",
-  {
-    border: "2px solid black",
-    borderRadius: "5px",
-    background: "lightgreen",
-  },
-  document.querySelector("#root"),
-);
+const btnDelAll = createElement("button", {
+  className: "button",
+  textContent: "DeleteALL",
+  // container: document.querySelector("#root"),
+});
 
 //создаём input todo
-createElement(
-  "input",
-  "Enter todo",
-  "",
-  {
-    type: "text",
-    margin: "0 10px",
-    border: "2px solid black",
-    borderRadius: "5px",
-    // background: "lightgreen",
-  },
-  document.querySelector("#root"),
-);
+const input = createElement("input", {
+  className: "input",
+  textContent: "Enter todo",
+  placeholder: "Enter todo...",
+  type: "text",
+  // container: document.querySelector("#root"),
+});
 
 //создаём btn Add
-createElement(
-  "button",
-  "Add",
-  "",
-  {
-    border: "2px solid black",
-    borderRadius: "5px",
-    background: "lightgreen",
-  },
-  document.querySelector("#root"),
-);
+const btnAdd = createElement("button", {
+  className: "button",
+  textContent: "Add",
+  // container: document.querySelector("#root"),
+});
 
-//создаём div todo
-createElement(
-  "div",
-  "",
-  "todo",
-  {
-    display: "grid",
-    gridTemplateColumns: "50px 2fr 50px",
-    gridTemplateRows: "auto auto",
-    margin: "10px 0",
-    padding: "10px 20px",
-    border: "2px solid black",
-    borderRadius: "5px",
-    background: "lightgray",
-  },
-  document.querySelector("#root"),
-);
+//создаём div Todo
+const divTodo = createElement("div", {
+  className: "",
+  id: "todo",
+  textContent: "",
+  // container: document.querySelector("#root"),
+});
 
 //создаём btn done
-createElement(
-  "button",
-  "✓",
-  "btn-check",
-  {
-    border: "2px solid black",
-    borderRadius: "5px",
-    background: "lightgreen",
-  },
-  document.querySelector("#todo"),
-);
+const btnDone = createElement("button", {
+  className: "button",
+  textContent: "✓",
+  id: "btn-done",
+  // container: document.querySelector("#todo"),
+});
 
 //создаём input todoText
-createElement(
-  "input",
-  "InputTodotext",
-  "",
-  {
-    type: "text",
-    margin: "0 5px",
-    border: "none",
-  },
-  document.querySelector("#todo"),
-);
+const inputTodoText = createElement("input", {
+  className: "input",
+  type: "text",
+  // container: document.querySelector("#todo"),
+});
 
-//создаём div delete
-createElement(
-  "button",
-  "X",
-  "btn-close",
-  {
-    border: "2px solid black",
-    borderRadius: "5px",
-    background: "lightgreen",
-  },
-  document.querySelector("#todo"),
-);
+//создаём btn close
+const btnClose = createElement("button", {
+  className: "button",
+  textContent: "X",
+  id: "btn-close",
+  // container: document.querySelector("#todo"),
+});
 
-//создаём input date
-createElement(
-  "input",
-  "Date",
-  "",
-  {
-    type: "text",
-    margin: "0 5px",
-    border: "none",
-  },
-  document.querySelector("#todo"),
-);
+//создаём input Date
+const inputDate = createElement("input", {
+  className: "input",
+  type: "text",
+  value: new Date().toLocaleString(),
+  // container: document.querySelector("#todo"),
+});
+
+console.log(fragment);
+document.querySelector("#root").append(fragment);
