@@ -11,12 +11,17 @@ body {
 }
 
 #root {
-  width: 100%;
-  max-width: 600px;
+  max-width: 500px;
   padding: 10px 20px;
   border: 2px solid black;
   border-radius: 5px;
   background: lightgray;
+}
+
+.control-panel {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
 }
 
 .button {
@@ -24,22 +29,53 @@ body {
   border-radius: 5px;
   background: lightgreen;
 }
-
-.input {
-  margin: 0 10px;
+.button-action {
+  width: 25px;
+  aspect-ratio: 1/1;
   border: 2px solid black;
   border-radius: 5px;
-  width: -moz-fit-content;
-  width: fit-content;
+  background: lightgreen;
 }
 
-#todo {
-  display: grid;
-  grid-template-columns: 50px 2fr 50px;
-  grid-template-rows: auto auto;
+.input {
+  margin: 0 5px;
+  border: 2px solid black;
+  border-radius: 5px;
+}
+.input-todo {
+  margin: 0 5px;
+  width: 100%;
+  border: 2px solid black;
+  border-radius: 5px;
+}
+.input-text {
+  margin: 0 5px;
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+  text-align: center;
+}
+.input-date {
+  margin: 5px auto;
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+  text-align: center;
+}
+
+.todo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin: 10px 0;
   padding: 10px 20px;
   border: 2px solid black;
   border-radius: 5px;
   background: lightgray;
+}
+.todo-action {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: end;
 }/*# sourceMappingURL=style.css.map */
