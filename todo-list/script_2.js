@@ -214,7 +214,7 @@ containerDone.addEventListener("click", (e) => {
 
   //находим ближайшего родителя
   const parentCard = buttonDone.closest(".todo");
-  console.dir(parentCard);
+
   //не нашли родителя - выходим
   if (!parentCard) {
     return;
