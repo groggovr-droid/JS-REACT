@@ -11,7 +11,7 @@ body {
 }
 
 #root {
-  max-width: 500px;
+  width: 500px;
   padding: 10px 20px;
   border: 2px solid black;
   border-radius: 5px;
@@ -30,6 +30,20 @@ body {
   background: lightgreen;
 }
 .button-action {
+  width: 25px;
+  aspect-ratio: 1/1;
+  border: 2px solid black;
+  border-radius: 5px;
+  background: lightgreen;
+}
+.button-action_done {
+  width: 25px;
+  aspect-ratio: 1/1;
+  border: 2px solid black;
+  border-radius: 5px;
+  background: lightgreen;
+}
+.button-action_close {
   width: 25px;
   aspect-ratio: 1/1;
   border: 2px solid black;
@@ -62,6 +76,14 @@ body {
   width: 100%;
   text-align: center;
 }
+.input-done {
+  margin: 0 5px;
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+  text-align: center;
+  text-decoration: line-through;
+}
 
 .todo {
   display: flex;
@@ -78,4 +100,8 @@ body {
   flex-direction: column;
   justify-content: space-between;
   align-items: end;
+}
+.todo-done {
+  background: red;
+  text-decoration: line-through;
 }/*# sourceMappingURL=style.css.map */
