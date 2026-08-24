@@ -85,8 +85,7 @@ document.querySelector("#root").append(fragment);
 //ключ для localStorage
 const todosStorageKey = "todos";
 
-//массив todos
-// let todos = [];
+//массив todos при загрузке страницы
 let todos = getDate();
 
 //функция для полученния данных из localSrorage
@@ -171,31 +170,31 @@ containerDone.addEventListener("click", (e) => {
 
   //меняем статус найденного родителя
   parentCard.classList.toggle("todo-done");
-  changeCookieState(parentCard);
+  changeTodosState(parentCard);
 });
 
-function changeCookieState(parentCard) {
-  const cookieArr = JSON.parse(localStorage.getItem(todosStorageKey));
-  const res = cookieArr.find((cookie) => {
+function changeTodosState(parentCard) {
+  const todosLSArray = getDate();
+  const res = todosLSArray.find((cookie) => {
     return String(cookie.id) === String(parentCard.id);
   });
 
   if (res) {
     res.isChecked = !res.isChecked;
-    return localStorage.setItem(todosStorageKey, JSON.stringify(cookieArr));
+    return localStorage.setItem(todosStorageKey, JSON.stringify(todosLSArray));
   } else {
     console.log("Запись с таким ID не найдена");
   }
 }
 
-//рендерим блоки по данным из cookies
+//рендерим блоки по данным из Local Storage
 renderTodos(todos);
 
 //render todos
 function renderTodos(todos) {
   fDeleteAll();
 
-  const fragment = document.createDocumentFragment();
+  // const fragment = document.createDocumentFragment();
 
   todos.forEach((todo) => {
     //создаём div Todo
@@ -205,7 +204,6 @@ function renderTodos(todos) {
       id: todo.id,
       isChecked: todo.isChecked,
     });
-
     //создаём btn done
     const btnDone = createElement("button", {
       className: "button-action_done",
@@ -214,7 +212,6 @@ function renderTodos(todos) {
       id: "btn-done",
     });
     divTodo.append(btnDone);
-
     //создаём input todoText
     const inputTodoText = createElement("input", {
       className: "input-text",
@@ -223,14 +220,12 @@ function renderTodos(todos) {
       readonly: true,
     });
     divTodo.append(inputTodoText);
-
     //создаём div Action
     const divAction = createElement("div", {
       className: "todo-action",
       textContent: "",
     });
     divTodo.append(divAction);
-
     //создаём btn close
     const btnClose = createElement("button", {
       className: "button-action_close",
@@ -238,7 +233,6 @@ function renderTodos(todos) {
       id: "btn-close",
     });
     divAction.append(btnClose);
-
     //создаём input Date
     const inputDate = createElement("input", {
       className: "input-date",
@@ -247,17 +241,22 @@ function renderTodos(todos) {
       readonly: true,
     });
     divAction.append(inputDate);
-
     document.querySelector("#root").append(divTodo);
   });
 }
 
-//функция по добавлению cookies
-const setDate = () => {
-  const divTodo = document.querySelector(".todo");
-  const inputDate = document.querySelector(".input-date");
-  const inputTodoText = document.querySelector(".input-todo");
+function setDate(todo) {
+  let todos = getDate();
 
+  // //добавляем todo в массив todos
+  todos.push(todo);
+
+  localStorage.setItem(todosStorageKey, JSON.stringify(todos));
+}
+
+//функция по добавлению блока todo
+function createTodo() {
+  //задаём параметры для создания todo
   const todo = {
     id: Date.now(),
     date: new Date().toLocaleDateString(),
@@ -265,17 +264,64 @@ const setDate = () => {
     isChecked: false,
   };
 
-  //добавляем todo в массив todos
-  todos.push(todo);
+  //сохраняем todo в LocalStorage
+  setDate(todo);
 
-  localStorage.setItem(todosStorageKey, JSON.stringify(todos));
+  //создаём div Todo
+  const divTodo = createElement("div", {
+    className: "todo",
+    textContent: "",
+    id: todo.id,
+    isChecked: todo.isChecked,
+  });
 
-  renderTodos(todos);
-};
+  //создаём btn done
+  const btnDone = createElement("button", {
+    className: "button-action_done",
+    textContent: "✓",
+    id: "btn-done",
+  });
+  divTodo.append(btnDone);
+
+  //создаём input todoText
+  const inputTodoText = createElement("input", {
+    className: "input-text",
+    type: "text",
+    value: todo.text,
+    readonly: true,
+  });
+  divTodo.append(inputTodoText);
+
+  //создаём div Action
+  const divAction = createElement("div", {
+    className: "todo-action",
+    textContent: "",
+  });
+  divTodo.append(divAction);
+
+  //создаём btn close
+  const btnClose = createElement("button", {
+    className: "button-action_close",
+    textContent: "X",
+    id: "btn-close",
+  });
+  divAction.append(btnClose);
+
+  //создаём input Date
+  const inputDate = createElement("input", {
+    className: "input-date",
+    type: "text",
+    value: todo.date,
+    readonly: true,
+  });
+  divAction.append(inputDate);
+
+  document.querySelector("#root").append(divTodo);
+}
 
 //добавление карточки
 //находим кнопку Add
 const buttonAdd = document.querySelector("#button-add");
 
 //навешиваем событие для создания карточки
-buttonAdd.addEventListener("click", setDate);
+buttonAdd.addEventListener("click", createTodo);
