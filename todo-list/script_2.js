@@ -194,79 +194,22 @@ renderTodos(todos);
 function renderTodos(todos) {
   fDeleteAll();
 
-  // const fragment = document.createDocumentFragment();
-
   todos.forEach((todo) => {
-    //создаём div Todo
-    const divTodo = createElement("div", {
-      className: "todo",
-      textContent: "",
-      id: todo.id,
-      isChecked: todo.isChecked,
-    });
-    //создаём btn done
-    const btnDone = createElement("button", {
-      className: "button-action_done",
-      // className: "button-action",
-      textContent: "✓",
-      id: "btn-done",
-    });
-    divTodo.append(btnDone);
-    //создаём input todoText
-    const inputTodoText = createElement("input", {
-      className: "input-text",
-      type: "text",
-      value: todo.text,
-      readonly: true,
-    });
-    divTodo.append(inputTodoText);
-    //создаём div Action
-    const divAction = createElement("div", {
-      className: "todo-action",
-      textContent: "",
-    });
-    divTodo.append(divAction);
-    //создаём btn close
-    const btnClose = createElement("button", {
-      className: "button-action_close",
-      textContent: "X",
-      id: "btn-close",
-    });
-    divAction.append(btnClose);
-    //создаём input Date
-    const inputDate = createElement("input", {
-      className: "input-date",
-      type: "text",
-      value: todo.date,
-      readonly: true,
-    });
-    divAction.append(inputDate);
-    document.querySelector("#root").append(divTodo);
+    createTodo(todo);
   });
 }
 
 function setDate(todo) {
   let todos = getDate();
 
-  // //добавляем todo в массив todos
+  //добавляем todo в массив todos
   todos.push(todo);
 
   localStorage.setItem(todosStorageKey, JSON.stringify(todos));
 }
 
 //функция по добавлению блока todo
-function createTodo() {
-  //задаём параметры для создания todo
-  const todo = {
-    id: Date.now(),
-    date: new Date().toLocaleDateString(),
-    text: input.value,
-    isChecked: false,
-  };
-
-  //сохраняем todo в LocalStorage
-  setDate(todo);
-
+function createTodo(todo) {
   //создаём div Todo
   const divTodo = createElement("div", {
     className: "todo",
@@ -324,4 +267,18 @@ function createTodo() {
 const buttonAdd = document.querySelector("#button-add");
 
 //навешиваем событие для создания карточки
-buttonAdd.addEventListener("click", createTodo);
+// buttonAdd.addEventListener("click", createTodo);
+buttonAdd.addEventListener("click", () => {
+  //задаём параметры для создания todo
+  const todo = {
+    id: Date.now(),
+    date: new Date().toLocaleDateString(),
+    text: input.value,
+    isChecked: false,
+  };
+
+  //сохраняем todo в LocalStorage
+  setDate(todo);
+
+  createTodo(todo);
+});
