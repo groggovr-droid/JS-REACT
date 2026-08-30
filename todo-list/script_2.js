@@ -1,11 +1,10 @@
-import { todosStorageKey } from "./LS_functions.js";
-import { getDate } from "./LS_functions.js";
-import { setDate } from "./LS_functions.js";
-import { changeTodosState } from "./LS_functions.js";
-import { createElement } from "./dom.js";
-import { createTodo } from "./dom.js";
-import { fDeleteAll } from "./dom.js";
-import { renderTodos } from "./dom.js";
+import {
+  todosStorageKey,
+  getDate,
+  setDate,
+  changeTodosState,
+} from "./LS_functions.js";
+import { createElement, createTodo, fDeleteAll, renderTodos } from "./dom.js";
 
 const fragment = document.createDocumentFragment();
 
