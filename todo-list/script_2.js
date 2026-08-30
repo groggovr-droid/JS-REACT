@@ -3,7 +3,7 @@ import {
   getDate,
   setDate,
   changeTodosState,
-} from "./LS_functions.js";
+} from "./storage.js";
 import { createElement, createTodo, fDeleteAll, renderTodos } from "./dom.js";
 
 const fragment = document.createDocumentFragment();
