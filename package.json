@@ -1,0 +1,26 @@
+{
+  "name": "js-react",
+  "version": "1.0.0",
+  "description": "",
+  "source": "src/index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel",
+    "build": "parcel build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/groggovr-droid/JS-REACT.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/groggovr-droid/JS-REACT/issues"
+  },
+  "homepage": "https://github.com/groggovr-droid/JS-REACT#readme",
+  "devDependencies": {
+    "parcel": "^2.16.4"
+  }
+}
