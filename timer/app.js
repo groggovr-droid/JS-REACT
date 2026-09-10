@@ -9,18 +9,15 @@ let intervalID;
 
 btnStart.addEventListener("click", () => {
   if (!isStarted) {
-    isStarted = 1;
-    console.log("timer is started");
+    isStarted = true;
     intervalID = setInterval(() => {
       counter = counter + 1;
       elem.textContent = counter + " sec";
-      console.log(counter);
     }, 1000);
   }
 });
 
 btnPause.addEventListener("click", () => {
   clearInterval(intervalID);
-  isStarted = 0;
-  console.log("timer is paused");
+  isStarted = false;
 });
