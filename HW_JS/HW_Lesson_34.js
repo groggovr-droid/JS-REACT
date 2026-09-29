@@ -17,7 +17,6 @@ const subjects = {
   },
 };
 
-let countSubjects = 0;
 let countStudents = 0;
 let countTeachers = 0;
 let arrObj = [];
@@ -27,17 +26,18 @@ console.log(`Строка из названий предметов: ${Object.key
 
 //считаем общее количество студентов и учителей на всех предметах
 for (let subject in subjects) {
-  countSubjects++;
-
   const infoSubj = subjects[subject];
 
   countStudents = countStudents + infoSubj.students;
   countTeachers = countTeachers + infoSubj.teachers;
 }
 
+console.log(`Общее количество предметов: ${Object.keys(subjects).length}`);
 console.log(`Общее количество студентов: ${countStudents}`);
 console.log(`Общее количество учителей: ${countTeachers}`);
-console.log(`Среднее количество студентов: ${countStudents / countSubjects}`);
+console.log(
+  `Среднее количество студентов: ${countStudents / Object.keys(subjects).length}`,
+);
 
 //Создать массив из объектов предметов
 const subjectsArray = Object.entries(subjects).map(([name, data]) => ({
