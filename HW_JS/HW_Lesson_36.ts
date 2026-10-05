@@ -66,7 +66,7 @@ function isHasEducation<T extends Record<K, boolean>, K extends keyof T>(
   items: T[],
   key: K,
 ) {
-  return items.filter((item) => item[key] === true);
+  return items.filter((item) => Boolean(item[key]));
 }
 
 const usersWithEducation = isHasEducation(users, "hasEducation");
@@ -86,7 +86,10 @@ console.log("4. usersWithAnimals:", usersWithAnimals);
 
 // 5. Создать функцию, которая бы принимала массив пользователей и отдавала бы
 // строку с названиями марок автомобилей через запятую
-function getAutoBrands<T, K extends keyof T>(items: T[], key: K): string {
+function getAutoBrands<
+  T extends Partial<Record<K, string[]>>,
+  K extends keyof T,
+>(items: T[], key: K): string {
   return items.flatMap((item) => item[key] ?? []).join(", ");
 }
 

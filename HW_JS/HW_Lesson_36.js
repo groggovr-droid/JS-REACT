@@ -43,7 +43,7 @@ console.log("2. totalCars:", totalCars);
 // 3. Создать функцию, которая бы принимала массив пользователей и
 // отфильтровывала пользователей на наличие образования
 function isHasEducation(items, key) {
-    return items.filter((item) => item[key] === true);
+    return items.filter((item) => Boolean(item[key]));
 }
 const usersWithEducation = isHasEducation(users, "hasEducation");
 console.log("3. usersWithEducation:", usersWithEducation);
