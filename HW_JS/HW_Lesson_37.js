@@ -111,8 +111,8 @@ console.log("2. uniqueActorsArr:", uniqueActorsArr);
 function uniqueArr(items, key) {
     return [...new Set(items.flatMap((item) => item[key]))];
 }
-console.log("1-2. uniqueArrGenre:", uniqueArr(films, "genre"));
-console.log("1-2. uniqueArrActors:", uniqueArr(films, "actors"));
+console.log("1-2. uniqueArrGenre(GEN):", uniqueArr(films, "genre"));
+console.log("1-2. uniqueArrActors(GEN):", uniqueArr(films, "actors"));
 // TASK 3
 const descFilmsByIMDBRating = films.toSorted((a, b) => b.imdbRating - a.imdbRating);
 console.log("3. descFilmsByIMDBRating:", descFilmsByIMDBRating);
@@ -136,13 +136,25 @@ function filterFilmsByYear(filmsArr, inputYear) {
     return films.filter((film) => film.year === inputYear);
 }
 const inputYear = 2011;
-console.log("5. Films of the year " + inputYear + ":", filterFilmsByYear(films, inputYear));
+console.log('5. Films of the year "' + inputYear + '":', filterFilmsByYear(films, inputYear));
+//generics
+function filterFilmsByYearGen(items, key, searchNumber) {
+    return items.filter((film) => film[key] === searchNumber);
+}
+const inputYearGen = 2011;
+console.log('5.1 Films of the year(GEN) "' + inputYearGen + '":', filterFilmsByYearGen(films, "year", inputYearGen));
 // TASK 6
 function findFilmsByTitle(filmsArr, inputTitle) {
     return films.filter((film) => film.title.toLowerCase().includes(inputTitle));
 }
 const inputTitle = "ar";
 console.log('6. Films includes in title "' + inputTitle + '":', findFilmsByTitle(films, inputTitle));
+//generics
+function findFilmsByTitleGen(items, key, searchString) {
+    return items.filter((film) => film[key].toLocaleLowerCase().includes(searchString));
+}
+const inputTitleGen = "ar";
+console.log('6.1 Films of the year(GEN) "' + inputTitleGen + '":', findFilmsByTitleGen(films, "title", inputTitleGen.toLocaleLowerCase()));
 // TASK 7
 function findFilmsByText(filmsArr, inputText) {
     return films.filter((film) => film.title.toLowerCase().includes(inputText) ||
@@ -150,10 +162,25 @@ function findFilmsByText(filmsArr, inputText) {
 }
 const inputText = "z";
 console.log('7. Films includes in title or in plot "' + inputText + '"', findFilmsByText(films, inputText));
+//generics
+function findFilmsByTextGen(items, key, searchString) {
+    return items.filter((film) => film[key[0]].toLocaleLowerCase().includes(searchString) ||
+        film[key[1]].toLocaleLowerCase().includes(searchString));
+}
+const inputTextGen = "z";
+console.log('7.1 Films includes in title or in plot(GEN) "' + inputTextGen + '"', findFilmsByTextGen(films, ["title", "plot"], inputTextGen.toLocaleLowerCase()));
 // TASK 8
 //через обычную функцию
-function SearchFilm(filmsArr, keyName, keyValue) {
+function searchFilm(filmsArr, keyName, keyValue) {
     return filmsArr.filter((film) => film[keyName] === keyValue);
 }
-console.log("8.1 searchFilm:", SearchFilm(films, "title", "BlackWidow"));
-console.log("8.2 searchFilm:", SearchFilm(films, "year", 2011));
+console.log("8.1 searchFilm:", searchFilm(films, "title", "Black Widow"));
+console.log("8.2 searchFilm:", searchFilm(films, "year", 2011));
+console.log("8 searchFilm:", searchFilm(films, "director", "David Yates"));
+//generics
+function searchFilmGen(items, key, searchString) {
+    return items.filter((film) => film[key] === searchString);
+}
+console.log("8.1(GEN) searchFilmGEN:", searchFilmGen(films, "title", "Black Widow"));
+console.log("8.2(GEN) searchFilmGEN:", searchFilmGen(films, "year", 2011));
+console.log("8(GEN) searchFilmGen:", searchFilmGen(films, "director", "David Yates"));

@@ -144,8 +144,8 @@ function uniqueArr<T extends Record<K, string[]>, K extends keyof T>(
   return [...new Set(items.flatMap((item) => item[key]))];
 }
 
-console.log("1-2. uniqueArrGenre:", uniqueArr(films, "genre"));
-console.log("1-2. uniqueArrActors:", uniqueArr(films, "actors"));
+console.log("1-2. uniqueArrGenre(GEN):", uniqueArr(films, "genre"));
+console.log("1-2. uniqueArrActors(GEN):", uniqueArr(films, "actors"));
 
 // TASK 3
 const descFilmsByIMDBRating = films.toSorted(
@@ -166,8 +166,8 @@ console.log("4. shortFilmInfo:", shortFilmInfo);
 
 // TASK 4.1
 //через деструктуризацию и типизацию
-type shortFilm = Pick<Film, "id" | "title" | "released" | "plot">;
-const shortFilms: shortFilm[] = films.map(({ id, title, released, plot }) => ({
+type ShortFilm = Pick<Film, "id" | "title" | "released" | "plot">;
+const shortFilms: ShortFilm[] = films.map(({ id, title, released, plot }) => ({
   id,
   title,
   released,
@@ -183,8 +183,23 @@ function filterFilmsByYear(filmsArr: Film[], inputYear: number): Film[] {
 
 const inputYear = 2011;
 console.log(
-  "5. Films of the year " + inputYear + ":",
+  '5. Films of the year "' + inputYear + '":',
   filterFilmsByYear(films, inputYear),
+);
+
+//generics
+function filterFilmsByYearGen<T extends Record<K, number>, K extends keyof T>(
+  items: T[],
+  key: K,
+  searchNumber: number,
+) {
+  return items.filter((film) => film[key] === searchNumber);
+}
+
+const inputYearGen = 2011;
+console.log(
+  '5.1 Films of the year(GEN) "' + inputYearGen + '":',
+  filterFilmsByYearGen(films, "year", inputYearGen),
 );
 
 // TASK 6
@@ -196,6 +211,23 @@ const inputTitle: string = "ar";
 console.log(
   '6. Films includes in title "' + inputTitle + '":',
   findFilmsByTitle(films, inputTitle),
+);
+
+//generics
+function findFilmsByTitleGen<T extends Record<K, string>, K extends keyof T>(
+  items: T[],
+  key: K,
+  searchString: string,
+) {
+  return items.filter((film) =>
+    film[key].toLocaleLowerCase().includes(searchString),
+  );
+}
+
+const inputTitleGen = "ar";
+console.log(
+  '6.1 Films of the year(GEN) "' + inputTitleGen + '":',
+  findFilmsByTitleGen(films, "title", inputTitleGen.toLocaleLowerCase()),
 );
 
 // TASK 7
@@ -213,9 +245,32 @@ console.log(
   findFilmsByText(films, inputText),
 );
 
+//generics
+function findFilmsByTextGen<T extends Record<K, string>, K extends keyof T>(
+  items: T[],
+  key: [K, K],
+  searchString: string,
+) {
+  return items.filter(
+    (film) =>
+      film[key[0]].toLocaleLowerCase().includes(searchString) ||
+      film[key[1]].toLocaleLowerCase().includes(searchString),
+  );
+}
+
+const inputTextGen: string = "z";
+console.log(
+  '7.1 Films includes in title or in plot(GEN) "' + inputTextGen + '"',
+  findFilmsByTextGen(
+    films,
+    ["title", "plot"],
+    inputTextGen.toLocaleLowerCase(),
+  ),
+);
+
 // TASK 8
 //через обычную функцию
-function SearchFilm(
+function searchFilm(
   filmsArr: Film[],
   keyName: keyof Film,
   keyValue: string | number,
@@ -223,5 +278,25 @@ function SearchFilm(
   return filmsArr.filter((film) => film[keyName] === keyValue);
 }
 
-console.log("8.1 searchFilm:", SearchFilm(films, "title", "BlackWidow"));
-console.log("8.2 searchFilm:", SearchFilm(films, "year", 2011));
+console.log("8.1 searchFilm:", searchFilm(films, "title", "Black Widow"));
+console.log("8.2 searchFilm:", searchFilm(films, "year", 2011));
+console.log("8 searchFilm:", searchFilm(films, "director", "David Yates"));
+
+//generics
+function searchFilmGen<T extends Record<K, string | number>, K extends keyof T>(
+  items: T[],
+  key: K,
+  searchString: T[K],
+) {
+  return items.filter((film) => film[key] === searchString);
+}
+
+console.log(
+  "8.1(GEN) searchFilmGEN:",
+  searchFilmGen(films, "title", "Black Widow"),
+);
+console.log("8.2(GEN) searchFilmGEN:", searchFilmGen(films, "year", 2011));
+console.log(
+  "8(GEN) searchFilmGen:",
+  searchFilmGen(films, "director", "David Yates"),
+);
